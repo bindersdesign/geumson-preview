@@ -28,6 +28,7 @@ a{color:inherit;text-decoration:none}
 .top{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .25s,box-shadow .25s}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
 .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:20px}
+.brand-logo{display:block;height:52px;width:auto}
 .brand-mark{width:34px;height:34px;border:2px dashed rgba(255,255,255,.6);display:grid;place-items:center;font-size:10px;font-weight:600;letter-spacing:0}
 .nav{display:flex;gap:8px;color:rgba(255,255,255,.85);font-size:16px;font-weight:600}
 .nav a{padding:8px 14px;transition:background .2s,color .2s}
@@ -328,6 +329,7 @@ footer .links a{color:rgba(255,255,255,.8);text-decoration:underline}
   .wrap{padding:0 20px}
   .top .wrap{height:60px}
   .brand{font-size:17px}
+  .brand-logo{height:42px}
   .top-call{display:none}
   .hero{min-height:auto}
   .hero-bg.s1{background-size:cover;background-position:70% center}
@@ -584,8 +586,7 @@ document.addEventListener('selectstart',function(e){var t=e.target;if(!(t&&t.clo
 document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&['s','u','p'].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>-1))e.preventDefault()});})();
 </script>
 </head>
-<body>
-<div class="bd-wm" aria-hidden="true"></div><div class="bd-note">검토용 시안 / Binders</div>
+<body><div class="bd-wm" aria-hidden="true"></div><div class="bd-note">검토용 시안 / Binders</div>
 
 <svg width="0" height="0" style="position:absolute">
   <symbol id="i-call" viewBox="0 0 24 24"><path fill="currentColor" d="M6.3 2.4c.7-.4 1.6-.2 2.1.4l2.4 3.3c.5.7.4 1.6-.2 2.2l-1.3 1.3c-.3.3-.4.8-.2 1.2.9 1.9 2.4 3.4 4.3 4.3.4.2.9.1 1.2-.2l1.3-1.3c.6-.6 1.5-.7 2.2-.2l3.3 2.4c.6.5.8 1.4.4 2.1l-1 1.9c-.6 1.1-1.9 1.8-3.2 1.5C10.9 20 4 13.1 2.7 6.4c-.2-1.3.4-2.6 1.6-3.2z"/></symbol>
@@ -594,7 +595,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 
 <header class="top" id="top">
   <div class="wrap">
-    <a class="brand" href="#">금손건축 누수탐지</a>
+    <a class="brand" href="#"><img class="brand-logo" src="logo-header.png" alt="금손건축 누수탐지" width="118" height="52"></a>
     <nav class="nav">
       <a href="#process">진행 과정</a><a href="#why">차별점</a><a href="#gear">전문 장비</a><a href="#reviews">실제 후기</a><a href="#cases">시공 사례</a><a href="#contact">문의하기</a>
     </nav>
