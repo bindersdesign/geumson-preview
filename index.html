@@ -319,7 +319,7 @@ footer .links a{color:rgba(255,255,255,.8);text-decoration:underline}
 .call-pop .box{position:relative;background:#fff;width:min(420px,calc(100% - 32px));padding:44px 36px 36px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3)}
 .call-pop .box small{display:block;font-size:16px;font-weight:600;color:var(--sub)}
 .call-pop .box b{display:block;margin-top:10px;font-size:40px;font-weight:800;color:var(--ink);letter-spacing:-0.02em}
-.call-pop .box p{margin-top:14px;font-size:16px;color:var(--text);line-height:1.6}
+.call-pop .box p{margin-top:14px;font-size:16px;color:var(--text);line-height:1.6;white-space:nowrap}
 .call-pop .copy{margin-top:24px;width:100%;height:52px;border:0;background:var(--acc);color:var(--acc-ink);font:700 17px/1 inherit;cursor:pointer}
 .call-pop .x{position:absolute;right:10px;top:10px;width:40px;height:40px;border:0;background:none;font-size:26px;color:var(--sub);cursor:pointer}.mbar{display:none}
 
@@ -848,7 +848,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
   <a class="f-call" href="tel:01031641348"><svg><use href="#i-call"/></svg>전화문의</a>
   <a class="f-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg><span>카카오톡<br>간편문의</span></a>
 </div>
-<div class="call-pop" id="callPop" role="dialog" aria-modal="true" aria-label="전화 상담 번호"><div class="box"><button class="x" type="button" aria-label="닫기">&times;</button><small>전화 상담</small><b>010-3164-1348</b><p>휴대폰으로 위 번호를 눌러<br>전화 주세요.</p><button class="copy" type="button">번호 복사하기</button></div></div><div class="mbar">
+<div class="call-pop" id="callPop" role="dialog" aria-modal="true" aria-label="전화 상담 번호"><div class="box"><button class="x" type="button" aria-label="닫기">&times;</button><small>전화 상담</small><b>010-3164-1348</b><p>휴대폰으로 위 번호를 눌러 전화 주세요.</p><button class="copy" type="button">번호 복사하기</button></div></div><div class="mbar">
   <a class="m-call" href="tel:01031641348"><svg><use href="#i-call"/></svg>전화 상담</a>
   <a class="m-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 간편문의</a>
 </div>
