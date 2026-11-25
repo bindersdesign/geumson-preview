@@ -285,6 +285,7 @@ div.case:hover{transform:none;box-shadow:none}
 .areas .br{flex-basis:100%;height:0}
 .areas span.main{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
 .areas-note{margin-top:28px;font-size:16px;color:rgba(255,255,255,.6)}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}.form-msg{margin-top:14px;font-size:15px;font-weight:600;line-height:1.5;min-height:1px}.form-msg.ok{color:#1A7F37}.form-msg.err{color:#C0392B}
 .big-call{margin-top:48px;display:block}
 @media (max-width:640px){.contact .big-call,.contact .cta{display:none}}
 .big-call small{display:block;font-size:16px;color:rgba(255,255,255,.6);font-weight:600}
@@ -820,20 +821,20 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
         <a class="btn btn-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 간편문의</a>
       </div>
     </div>
-    <form onsubmit="event.preventDefault();alert('온라인 신청은 준비 중입니다. 전화나 카카오톡으로 연락 주세요.')">
+    <form id="inqForm" novalidate>
       <h3>문의 남기기</h3>
       <div class="f2">
-        <div class="f"><label for="n">이름</label><input id="n" placeholder="이름" required></div>
-        <div class="f"><label for="p">연락처</label><input id="p" inputmode="tel" placeholder="010-0000-0000" required></div>
+        <div class="f"><label for="n">이름</label><input id="n" name="이름" placeholder="이름" required></div>
+        <div class="f"><label for="p">연락처</label><input id="p" name="연락처" inputmode="tel" placeholder="010-0000-0000" required></div>
       </div>
       <div class="f2">
-        <div class="f"><label for="a">지역</label><input id="a" placeholder="예: 남동구 만수동"></div>
-        <div class="f"><label for="w">누수 위치</label><select id="w"><option>천장</option><option>벽</option><option>바닥</option><option>욕실 / 화장실</option><option>주방</option><option>잘 모르겠어요</option></select></div>
+        <div class="f"><label for="a">지역</label><input id="a" name="지역" placeholder="예: 남동구 만수동"></div>
+        <div class="f"><label for="w">누수 위치</label><select id="w" name="누수 위치"><option>천장</option><option>벽</option><option>바닥</option><option>욕실 / 화장실</option><option>주방</option><option>잘 모르겠어요</option></select></div>
       </div>
-      <div class="f"><label for="m">내용</label><textarea id="m" rows="4" placeholder="언제부터, 어디에서 물이 새는지 적어 주세요"></textarea></div>
+      <div class="f"><label for="m">내용</label><textarea id="m" name="내용" rows="4" placeholder="언제부터, 어디에서 물이 새는지 적어 주세요"></textarea></div>
       <div class="notice">수집 목적: 누수 상담 연락과 현장 방문 일정 안내 / 수집 항목: 이름, 연락처, 지역, 누수 위치, 문의 내용 / 보유 기간: 상담 완료 후 1년까지 / 동의하지 않으실 수 있으나, 이 경우 상담 신청이 어렵습니다.</div>
-      <label class="agree"><input type="checkbox" required><span>위 개인정보 수집과 이용에 동의합니다. <a href="privacy.html" target="_blank">개인정보처리방침</a></span></label>
-      <button type="submit">상담 신청하기</button>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="agree"><input type="checkbox" required><span>위 개인정보 수집과 이용에 동의합니다. <a href="privacy.html" target="_blank">개인정보처리방침</a></span></label>
+      <button type="submit">상담 신청하기</button><p class="form-msg" id="inqMsg" role="status"></p>
     </form>
   </div>
 </section>
@@ -887,7 +888,16 @@ addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd
 const cp=pop.querySelector('.copy');const close=()=>pop.classList.remove('on');
 document.querySelectorAll('a[href^="tel:"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();cp.textContent='번호 복사하기';pop.classList.add('on');}));
 pop.addEventListener('click',e=>{if(e.target===pop||e.target.closest('.x'))close();});addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-cp.addEventListener('click',()=>{const n='010-3164-1348';const done=()=>{cp.textContent='복사했습니다';};if(navigator.clipboard)navigator.clipboard.writeText(n).then(done,done);else done();});})();document.querySelectorAll('[data-soon]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+cp.addEventListener('click',()=>{const n='010-3164-1348';const done=()=>{cp.textContent='복사했습니다';};if(navigator.clipboard)navigator.clipboard.writeText(n).then(done,done);else done();});})();(()=>{const f=document.getElementById('inqForm');if(!f)return;const KEY='a98e5eee-8981-4030-9663-95e5831a6421';const msg=document.getElementById('inqMsg');const btn=f.querySelector('button[type=submit]');
+const show=(t,c)=>{msg.textContent=t;msg.className='form-msg '+c;};
+f.addEventListener('submit',async e=>{e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}
+
+const fd=new FormData(f);fd.append('access_key',KEY);fd.append('subject','[금손누수탐지] 홈페이지 상담 신청 - '+(fd.get('이름')||''));fd.append('from_name','금손누수탐지 홈페이지');
+btn.disabled=true;btn.textContent='보내는 중…';
+try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});const j=await r.json();
+if(j.success){show('상담 신청이 접수되었습니다. 확인 후 바로 연락드리겠습니다.','ok');f.reset();}else{show('전송에 실패했습니다. 전화 010-3164-1348로 연락 주세요.','err');}}
+catch(err){show('전송에 실패했습니다. 전화 010-3164-1348로 연락 주세요.','err');}
+btn.disabled=false;btn.textContent='상담 신청하기';});})();document.querySelectorAll('[data-soon]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
 (()=>{const top=document.getElementById('top'),b=top&&top.querySelector('.m-menu');if(!b)return;const set=o=>{top.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기');document.body.style.overflow=o?'hidden':'';};
 b.addEventListener('click',()=>set(!top.classList.contains('open')));top.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>set(false)));})();const hdr = document.getElementById('top');
 const onScroll = ()=> hdr.classList.toggle('solid', scrollY > 40);
