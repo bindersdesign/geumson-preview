@@ -307,14 +307,21 @@ footer .links{margin-top:18px;display:flex;gap:20px}
 footer .links a{color:rgba(255,255,255,.8);text-decoration:underline}
 
 /* 따라다니는 상담 버튼 */
-.float{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;flex-direction:column;gap:10px}
-.float a{width:78px;height:86px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.float{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:10px}
+.float a{width:84px;height:96px;text-align:center;line-height:1.25;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .float a svg{width:40px;height:40px}
 .float .f-call{background:#F1F2F4;color:var(--ink)}
 .float .f-call svg{background:var(--ink);color:#fff;border-radius:50%;padding:9px}
 .float .f-kakao{background:var(--kakao);color:#191600}
 .float .f-kakao svg{width:32px;height:32px}
-.mbar{display:none}
+.call-pop{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(11,22,38,.6)}
+.call-pop.on{display:flex}
+.call-pop .box{position:relative;background:#fff;width:min(420px,calc(100% - 32px));padding:44px 36px 36px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.call-pop .box small{display:block;font-size:16px;font-weight:600;color:var(--sub)}
+.call-pop .box b{display:block;margin-top:10px;font-size:40px;font-weight:800;color:var(--ink);letter-spacing:-0.02em}
+.call-pop .box p{margin-top:14px;font-size:16px;color:var(--text);line-height:1.6}
+.call-pop .copy{margin-top:24px;width:100%;height:52px;border:0;background:var(--acc);color:var(--acc-ink);font:700 17px/1 inherit;cursor:pointer}
+.call-pop .x{position:absolute;right:10px;top:10px;width:40px;height:40px;border:0;background:none;font-size:26px;color:var(--sub);cursor:pointer}.mbar{display:none}
 
 /* 반응형 */
 @media (max-width:1000px){
@@ -615,7 +622,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
     <p class="lead">원인 진단, 배관 수리, 마감 복구, 보험 청구 서류까지 <br>여러 업체 부를 필요 없이 <b class="hl-boss">대표가 직접</b> 맡습니다</p>
     <div class="cta">
       <a class="btn btn-call" href="tel:01031641348"><svg><use href="#i-call"/></svg>전화 상담<span class="num">&nbsp;010-3164-1348</span></a>
-      <a class="btn btn-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 상담</a>
+      <a class="btn btn-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 간편문의</a>
     </div>
     <div class="hero-facts">
       <div><b><em class="p-t">장비로 정확한 누수 원인 진단</em><em class="m-t">정확한<br>누수 진단</em></b><span>청음식 / 가스식 / 관로 / 열화상</span></div>
@@ -806,7 +813,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
       <p class="areas-note">그 밖의 지역은 전화로 문의해 주세요.</p>
       <a class="big-call" href="tel:01031641348"><small>전화 상담</small><b>010-3164-1348</b></a>
       <div class="cta">
-        <a class="btn btn-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 상담</a>
+        <a class="btn btn-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 간편문의</a>
       </div>
     </div>
     <form onsubmit="event.preventDefault();alert('온라인 신청은 준비 중입니다. 전화나 카카오톡으로 연락 주세요.')">
@@ -839,11 +846,11 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 <!-- 따라다니는 상담 버튼 -->
 <div class="float">
   <a class="f-call" href="tel:01031641348"><svg><use href="#i-call"/></svg>전화문의</a>
-  <a class="f-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡</a>
+  <a class="f-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg><span>카카오톡<br>간편문의</span></a>
 </div>
-<div class="mbar">
+<div class="call-pop" id="callPop" role="dialog" aria-modal="true" aria-label="전화 상담 번호"><div class="box"><button class="x" type="button" aria-label="닫기">&times;</button><small>전화 상담</small><b>010-3164-1348</b><p>휴대폰으로 위 번호를 눌러<br>전화 주세요.</p><button class="copy" type="button">번호 복사하기</button></div></div><div class="mbar">
   <a class="m-call" href="tel:01031641348"><svg><use href="#i-call"/></svg>전화 상담</a>
-  <a class="m-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 상담</a>
+  <a class="m-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 간편문의</a>
 </div>
 
 <script>
@@ -871,7 +878,11 @@ const step=()=>tr.clientWidth+parseFloat(getComputedStyle(tr).columnGap||24);
 const upd=()=>{const n=Math.max(1,Math.round((tr.scrollWidth+24)/step())),i=Math.min(n,Math.round(tr.scrollLeft/step())+1);pg.textContent=i+' / '+n;pv.disabled=tr.scrollLeft<4;nx.disabled=tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4;};
 pv.onclick=()=>tr.scrollBy({left:-step()});nx.onclick=()=>tr.scrollBy({left:step()});tr.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();})();(()=>{const links=[...document.querySelectorAll('.nav a[href^="#"]')];const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
 const upd=()=>{const y=scrollY+140;let cur=null;secs.forEach(s=>{if(s.offsetTop<=y)cur=s});links.forEach(a=>a.classList.toggle('on',!!cur&&a.getAttribute('href')==='#'+cur.id));};
-addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();})();document.querySelectorAll('[data-soon]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();})();(()=>{const pop=document.getElementById('callPop');if(!pop)return;const touch=matchMedia('(pointer:coarse)').matches;if(touch)return;
+const cp=pop.querySelector('.copy');const close=()=>pop.classList.remove('on');
+document.querySelectorAll('a[href^="tel:"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();cp.textContent='번호 복사하기';pop.classList.add('on');}));
+pop.addEventListener('click',e=>{if(e.target===pop||e.target.closest('.x'))close();});addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+cp.addEventListener('click',()=>{const n='010-3164-1348';const done=()=>{cp.textContent='복사했습니다';};if(navigator.clipboard)navigator.clipboard.writeText(n).then(done,done);else done();});})();document.querySelectorAll('[data-soon]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
 (()=>{const top=document.getElementById('top'),b=top&&top.querySelector('.m-menu');if(!b)return;const set=o=>{top.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기');document.body.style.overflow=o?'hidden':'';};
 b.addEventListener('click',()=>set(!top.classList.contains('open')));top.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>set(false)));})();const hdr = document.getElementById('top');
 const onScroll = ()=> hdr.classList.toggle('solid', scrollY > 40);
