@@ -377,11 +377,12 @@ footer .links a{color:rgba(255,255,255,.8);text-decoration:underline}
   form{padding:28px 22px}
   .f2{grid-template-columns:1fr}
   .float{display:none}
-  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:60;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
-  .mbar a{height:62px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:17px}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:60;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
+  .mbar a{height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-weight:700;font-size:14px;line-height:1}
   .mbar svg{width:22px;height:22px}
   .mbar .m-call{background:var(--ink);color:var(--acc)}
   .mbar .m-kakao{background:var(--kakao);color:#191600}
+  .mbar .m-sms{background:#fff;color:var(--ink)}
 }
 /* ===== 모바일 정리 (2026-11-23) ===== */
 @media (max-width:640px){
@@ -489,7 +490,7 @@ footer .links a{color:rgba(255,255,255,.8);text-decoration:underline}
   .hero h1{font-size:30px;line-height:1.3;letter-spacing:-0.03em}
   .hero p.lead{margin-top:14px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.82);letter-spacing:-0.05em}
   .cta{margin-top:22px;gap:8px}
-  .hero .cta{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
+  .hero .cta{display:none}
   .hero .cta .btn{justify-content:center}
   .cta .btn{height:40px;font-size:13.5px;gap:6px;flex:none;padding:0 14px}
   .cta .btn svg{width:15px;height:15px}
@@ -598,6 +599,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 
 <svg width="0" height="0" style="position:absolute">
   <symbol id="i-call" viewBox="0 0 24 24"><path fill="currentColor" d="M6.3 2.4c.7-.4 1.6-.2 2.1.4l2.4 3.3c.5.7.4 1.6-.2 2.2l-1.3 1.3c-.3.3-.4.8-.2 1.2.9 1.9 2.4 3.4 4.3 4.3.4.2.9.1 1.2-.2l1.3-1.3c.6-.6 1.5-.7 2.2-.2l3.3 2.4c.6.5.8 1.4.4 2.1l-1 1.9c-.6 1.1-1.9 1.8-3.2 1.5C10.9 20 4 13.1 2.7 6.4c-.2-1.3.4-2.6 1.6-3.2z"/></symbol>
+  <symbol id="i-sms" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-4.4 3.5c-.4.3-.9 0-.9-.4V18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5.2a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6z"/></symbol>
   <symbol id="i-kakao" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.8S17.5 3 12 3z"/></symbol>
 </svg>
 
@@ -850,7 +852,8 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 </div>
 <div class="call-pop" id="callPop" role="dialog" aria-modal="true" aria-label="전화 상담 번호"><div class="box"><button class="x" type="button" aria-label="닫기">&times;</button><small>전화 상담</small><b>010-3164-1348</b><p>휴대폰으로 위 번호를 눌러 전화 주세요.</p><button class="copy" type="button">번호 복사하기</button></div></div><div class="mbar">
   <a class="m-call" href="tel:01031641348"><svg><use href="#i-call"/></svg>전화 상담</a>
-  <a class="m-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카카오톡 간편문의</a>
+  <a class="m-sms" href="sms:01031641348?&body=%5B%EB%88%84%EC%88%98%20%EB%AC%B8%EC%9D%98%5D%0A%EC%A7%80%EC%97%AD%3A%20%0A%EC%A6%9D%EC%83%81%3A%20%0A(%EC%82%AC%EC%A7%84%EC%9D%B4%20%EC%9E%88%EC%9C%BC%EB%A9%B4%20%ED%95%A8%EA%BB%98%20%EB%B3%B4%EB%82%B4%20%EC%A3%BC%EC%84%B8%EC%9A%94)"><svg><use href="#i-sms"/></svg>문자 문의</a>
+  <a class="m-kakao" href="#" data-kakao><svg><use href="#i-kakao"/></svg>카톡 문의</a>
 </div>
 
 <script>
