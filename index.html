@@ -224,6 +224,8 @@ div.case:hover{transform:none;box-shadow:none}
 .cs2-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .cs2-card:hover .cs2-btn{background:#fff;color:var(--ink);border-color:#fff}
 @media (max-width:1000px){.cs2{grid-template-columns:1fr}}
+.cs2.one .cs2-card::after{background:linear-gradient(90deg,rgba(8,16,28,.94) 0%,rgba(8,16,28,.82) 28%,rgba(8,16,28,.35) 55%,rgba(8,16,28,0) 78%),linear-gradient(180deg,rgba(8,16,28,0) 50%,rgba(8,16,28,.45) 100%)}.cs2.one{grid-template-columns:1fr}.cs2.one .cs2-card{aspect-ratio:21/8}.cs2.one .cs2-body{padding:48px 56px}
+@media (max-width:640px){.cs2.one .cs2-card::after{background:linear-gradient(90deg,rgba(8,16,28,.9) 0%,rgba(8,16,28,.6) 45%,rgba(8,16,28,.15) 80%),linear-gradient(180deg,rgba(8,16,28,0) 35%,rgba(8,16,28,.6) 100%)}.cs2.one .cs2-card{aspect-ratio:4/3}.cs2.one .cs2-body{padding:20px}}
 @media (max-width:640px){.cs2-body{padding:24px}.cs2-body h3{font-size:26px}.cs2-body p{font-size:15px}}
 /* 후기 */
 .reviews-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
@@ -794,9 +796,8 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
         <p class="sec-desc" style="max-width:none"><span class="p-t">시공 과정과 복구 결과를 사진으로 정리해 두었습니다.</span><span class="m-t">시공 과정과 복구 결과를 정리해 두었습니다.</span></p>
       </div>
     </div>
-    <div class="cs2">
-      <a class="cs2-card" href="#" data-soon><img src="main-02.jpg" alt="거실 바닥을 열고 배관을 교체하는 기사" loading="lazy"><div class="cs2-body"><span class="cs2-no">01</span><h3>시공 사례</h3><p>누수탐지부터 배관 교체, 방수 공사까지 <br>현장별 진행 과정을 보여 드립니다.</p><span class="cs2-btn">더 알아보기</span></div></a>
-      <a class="cs2-card" href="#" data-soon><img src="step-06.jpg" alt="수리한 바닥에 새 타일을 붙이는 손" loading="lazy"><div class="cs2-body"><span class="cs2-no">02</span><h3>복구 마감 사례</h3><p>철거한 자리를 미장 / 타일 / 도배로 <br>원래 모습에 가깝게 되돌린 결과입니다.</p><span class="cs2-btn">더 알아보기</span></div></a>
+    <div class="cs2 one">
+      <a class="cs2-card" href="#" data-soon><img src="main-02.jpg" alt="거실 바닥을 열고 배관을 교체하는 기사" loading="lazy"><div class="cs2-body"><h3>시공 사례</h3><p>누수탐지부터 배관 교체, 방수 공사, 마감 복구까지 <br>현장별 진행 과정과 결과를 보여 드립니다.</p><span class="cs2-btn">더 알아보기</span></div></a>
     </div>
   </div>
 </section>
